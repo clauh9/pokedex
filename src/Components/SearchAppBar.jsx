@@ -70,7 +70,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function SearchAppBar() {
+export default function SearchAppBar({pokemonFilter}) {
   return (
     <ThemeProvider theme={theme}>
     <Box sx={{ flexGrow: 1, marginBottom:"3rem"}}>
@@ -92,7 +92,7 @@ export default function SearchAppBar() {
           >
             PoKéDeX
           </Typography>
-          <Search>
+          <Search onChange={(e) => pokemonFilter(e.target.value)}>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
