@@ -53,7 +53,7 @@ const Home = () => {
         <div className='Home'>
             {/* Loading our API shows this */}
             {loading === true && <div> <SearchAppBar pokemonFilter={pokemonFilter}/>
-            <div className="loading"><div class="lds-ring"><div></div><div></div><div></div><div></div></div></div>
+            <div className="loading"><div className="lds-ring"><div></div><div></div><div></div><div></div></div></div>
             </div>}
 
             {/* When it's done loading our API it shows this */}  
