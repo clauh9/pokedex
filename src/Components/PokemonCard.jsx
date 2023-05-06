@@ -4,14 +4,13 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-
-// import PokemonWeakness from "./PokemonWeakness";
+import pokemon_loading from '../Img/pokemon_loading.gif';
 import {usePokemonWeakness} from "../Hooks/usePokemonWeakness"
 
 let i = 0;
 
-export default function PokemonCard({ name, img, typesArr }) {
-	const type = typesArr.map((item) => {
+function typesColors(array) {
+	const newArray = array.map((item) => {
 		const classes = `type ${item}`;
 		return (
 			<span key={i++} className={classes}>
@@ -20,16 +19,17 @@ export default function PokemonCard({ name, img, typesArr }) {
 		);
 	});
 
+	return newArray;
+}
+
+
+export default function PokemonCard({ name, img, typesArr }) {
 	const { weaknesses, isLoading, error } = usePokemonWeakness( name );
 
-	const typeWeakTo = weaknesses.map((item) => {
-		const classes = `type ${item}`;
-		return (
-			<span key={i++} className={classes}>
-				{item}
-			</span>
-		);
-	});
+	//set the colors for that pokemon type
+	const type = typesColors(typesArr);
+    //set the colors for that pokemon weaknesses
+	const typeWeakTo = typesColors(weaknesses);
 
 	return (
 		<Card sx={{ maxWidth: 350 }}>
@@ -40,7 +40,7 @@ export default function PokemonCard({ name, img, typesArr }) {
 						<b>{name}</b> <span className="types">{type}</span>
 					</div>
 					{/* {console.log({weaknesses})} */}
-					<div>Weak to: <span className="types">{typeWeakTo}</span>
+					<div>Weak to: {isLoading? <img src={pokemon_loading} alt="" width="50" height="35"/>: <span className="types">{typeWeakTo}</span> }
         
 					</div>
 				</Typography>

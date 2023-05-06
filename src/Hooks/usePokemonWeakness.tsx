@@ -1,15 +1,5 @@
 import { useState, useEffect } from "react";
 
-interface UsePokemonWeaknessOptions {
-	pokemonName: string;
-}
-
-interface UsePokemonWeaknessOutput {
-	weaknesses: string[];
-	isLoading: boolean;
-	error?: Error;
-}
-
 export function usePokemonWeakness(pokemonName: string) {
 	const [weaknesses, setWeaknesses] = useState<string[]>([]);
 	const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -57,6 +47,7 @@ export function usePokemonWeakness(pokemonName: string) {
 				// 	}
 				// }
 
+				//order weaknesses from most effective to least
 				const weaknesses: string[] = Object.entries(multipliers)
 					.filter(([type, multiplier]) => multiplier > 1)
 					.sort((a, b) => b[1] - a[1])
