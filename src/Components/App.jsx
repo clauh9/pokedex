@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import PokemonCard from '../Components/PokemonCard';
-import SearchAppBar from "../Components/SearchAppBar"
+import PokemonCard from './PokemonCard';
+import SearchAppBar from "./SearchAppBar"
 import { Container } from "@mui/system";
 import { Grid } from "@mui/material";
 import axios from 'axios';
@@ -19,11 +19,13 @@ function App() {
     };
   }, []);
 
+  
   const getPokemons = () => {
     setLoading(true);
     const promises = [];
     //there's 386 pokemons is the sum of all pokemons in the first 3 generations
-    for (let i = 1; i <= 386; i++) {
+    //721 I-VI gen 
+    for (let i = 1; i <= 721; i++) {
       const url = `https://pokeapi.co/api/v2/pokemon/${i}/`;
       promises.push(url);
     }
